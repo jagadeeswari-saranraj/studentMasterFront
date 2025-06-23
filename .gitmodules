@@ -1,0 +1,3 @@
+[submodule "studentMaster"]
+	path = studentMaster
+	url = git@github.com:jagadeeswari-saranraj/studentMaster.git
