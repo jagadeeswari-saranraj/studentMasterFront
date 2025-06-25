@@ -25,7 +25,7 @@ pipeline {
             $class: 'GitSCM',
             branches: [[name: '*/main']],
             userRemoteConfigs: [[url: 'https://github.com/jagadeeswari-saranraj/studentMasterFront.git']],
-            extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true]]
+            extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true, trackingSubmodules: true]]
         ])
       }
     }
