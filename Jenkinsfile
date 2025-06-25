@@ -8,7 +8,7 @@ pipeline {
 
   tools {
     nodejs 'NodeJS_22.14.0'         // You must configure NodeJS in Jenkins tools
-    maven 'Maven_3.5.3'          // Or use Gradle if needed
+    maven 'Maven_3.9.0'
   }
 
   stages {
