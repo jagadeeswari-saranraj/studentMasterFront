@@ -7,15 +7,19 @@ pipeline {
   }
 
   tools {
-    nodejs 'NodeJS_18'         // You must configure NodeJS in Jenkins tools
-    maven 'Maven_3.9'          // Or use Gradle if needed
+    nodejs 'NodeJS_22.14.0'         // You must configure NodeJS in Jenkins tools
+    maven 'Maven_3.5.3'          // Or use Gradle if needed
   }
 
   stages {
     stage('Clone with Submodules') {
       steps {
-        git url: 'git@github.com:jagadeeswari-saranraj/studentMasterFront.git', submoduleCfg: [], changelog: false, poll: false
-        sh 'git submodule update --init --recursive'
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/main']],
+            userRemoteConfigs: [[url: 'https://github.com/jagadeeswari-saranraj/studentMasterFront.git']],
+            extensions: [[$class: 'SubmoduleOption', recursiveSubmodules: true]]
+        ])
       }
     }
 
