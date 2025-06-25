@@ -55,6 +55,17 @@ pipeline {
               docker rm -f student-react-app || true
               docker rm -f student-spring-app || true
               docker rm -f student-mysql || true
+              docker network rm student-network || true
+          '''
+        }
+      }
+    }
+
+    stage('Create Docker Network') {
+      steps {
+        script {
+          sh '''
+              docker network create sudent-network
           '''
         }
       }
@@ -75,7 +86,7 @@ pipeline {
       steps {
         script {
           sh '''
-            docker run -d --name student-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=student_master -p 3306:3306 mysql:8
+            docker run -d --name student-mysql --network sudent-network -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=student_master -p 3306:3306 mysql:8
             sleep 40  # Give MySQL some time to initialize
           '''
         }
@@ -85,8 +96,8 @@ pipeline {
     // Optional run containers
     stage('Run Containers') {
       steps {
-        sh 'docker run -d --name student-react-app -p 8081:8080 jagadeeswari/student-react-app:v1'
-        sh 'docker run -d --name student-spring-app -p 3000:3000 jagadeeswari/student-spring-app:v1'
+        sh 'docker run -d --name student-react-app --network sudent-network -p 8081:8080 jagadeeswari/student-react-app:v1'
+        sh 'docker run -d --name student-spring-app --network sudent-network -p 3000:3000 jagadeeswari/student-spring-app:v1'
       }
     }
   }
