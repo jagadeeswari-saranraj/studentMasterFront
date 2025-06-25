@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    REACT_DIR = 'studentMasterFront/student_manster'
+    REACT_DIR = 'student_manster'
     SPRING_DIR = 'studentMaster'
   }
 
