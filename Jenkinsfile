@@ -80,7 +80,7 @@ pipeline {
       steps {
         script {
           sh '''
-              docker network create sudent-network
+              docker network create student-network
           '''
         }
       }

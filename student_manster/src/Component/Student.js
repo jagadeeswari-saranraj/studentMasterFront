@@ -22,6 +22,7 @@ const Student = () => {
         dispatch(fetchStudents());
     }, [dispatch]);
 
+    // change the form data value in input form
     const onChangeFormData = async (e) => {
         setFormData({
             ...formData,
@@ -29,6 +30,7 @@ const Student = () => {
         })
     }
 
+    // copy the student data to form data when edit the value
     const editStudent = async (student) => {
         setIsNew(false)
         setFormData({
