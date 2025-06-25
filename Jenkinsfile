@@ -54,7 +54,7 @@ pipeline {
         script {
           sh 'pwd'
           sh 'docker build -t jagadeeswari/student-react-app:v1 ./student_manster'
-          sh 'docker build -t jagadeeswari/student-spring-app:v1 ./studentMaster'
+          sh 'docker build -t jagadeeswari/student-spring-app:v1 .'
         }
       }
     }
