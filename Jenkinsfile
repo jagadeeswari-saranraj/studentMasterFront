@@ -54,6 +54,7 @@ pipeline {
           sh '''
               docker rm -f student-react-app || true
               docker rm -f student-spring-app || true
+              docker rm -f student-mysql || true
           '''
         }
       }
@@ -65,6 +66,18 @@ pipeline {
         script {
           sh 'docker build -t jagadeeswari/student-react-app:v1 ./student_manster'
           sh 'docker build -t jagadeeswari/student-spring-app:v1 ./studentMaster'
+        }
+      }
+    }
+
+    // Start MySql
+    stage('Start MySQL Container') {
+      steps {
+        script {
+          sh '''
+            docker run -d --name student-mysql -e MYSQL_DATABASE=student_db -p 3306:3306 mysql:8
+            sleep 20  # Give MySQL some time to initialize
+          '''
         }
       }
     }
