@@ -48,13 +48,23 @@ pipeline {
       }
     }
 
+    stage('Stop Old Containers') {
+      steps {
+        script {
+          sh '''
+              docker rm -f student-react-app || true
+              docker rm -f student-spring-app || true
+          '''
+        }
+      }
+    }
+
     // Optional Docker Image build
     stage('Build Docker Images') {
       steps {
         script {
-          sh 'pwd'
           sh 'docker build -t jagadeeswari/student-react-app:v1 ./student_manster'
-          sh 'docker build -t jagadeeswari/student-spring-app:v1 .'
+          sh 'docker build -t jagadeeswari/student-spring-app:v1 ./studentMaster'
         }
       }
     }
