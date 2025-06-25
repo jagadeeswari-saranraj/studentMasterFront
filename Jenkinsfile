@@ -75,7 +75,7 @@ pipeline {
       steps {
         script {
           sh '''
-            docker run -d --name student-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD -e MYSQL_DATABASE=student_master -p 3306:3306 mysql:8
+            docker run -d --name student-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=student_master -p 3306:3306 mysql:8
             sleep 20  # Give MySQL some time to initialize
           '''
         }
