@@ -7,6 +7,7 @@ pipeline {
   }
 
   tools {
+    jdk 'JDK_21'
     nodejs 'NodeJS_22.14.0'         // You must configure NodeJS in Jenkins tools
     maven 'Maven_3.9.0'
   }
