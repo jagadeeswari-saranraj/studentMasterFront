@@ -13,6 +13,21 @@ pipeline {
   }
 
   stages {
+    stage('Check Branch') {
+      when {
+        anyOf {
+          branch 'main'
+          expression {
+            // Allow build for any branch
+            return true
+          }
+        }
+      }
+      steps {
+        echo "Running build for branch: ${env.GIT_BRANCH}"
+      }
+    }
+
     stage('Clean Workspace') {
         steps {
             cleanWs()
