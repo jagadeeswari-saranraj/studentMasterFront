@@ -13,11 +13,11 @@ pipeline {
   }
 
   stages {
-    stage('Clean Workspace') {
-        steps {
-            cleanWs()
-        }
-    }
+    // stage('Clean Workspace') {
+    //     steps {
+    //         cleanWs()
+    //     }
+    // }
 
     stage('Clone with Submodules') {
       steps {
@@ -52,8 +52,9 @@ pipeline {
     stage('Build Docker Images') {
       steps {
         script {
-          sh 'docker build -t react-app ./frontend'
-          sh 'docker build -t springboot-app ./backend'
+          sh 'pwd'
+          sh 'docker build -t jagadeeswari/student-react-app:v1 ./student_manster'
+          sh 'docker build -t jagadeeswari/student-spring-app:v1 ./studentMaster'
         }
       }
     }
@@ -61,8 +62,8 @@ pipeline {
     // Optional run containers
     stage('Run Containers') {
       steps {
-        sh 'docker run -d -p 8080:8080 springboot-app'
-        sh 'docker run -d -p 3000:3000 react-app'
+        sh 'docker run -d -p 8080:8080 jagadeeswari/student-react-app:v1'
+        sh 'docker run -d -p 3000:3000 jagadeeswari/student-spring-app:v1'
       }
     }
   }
