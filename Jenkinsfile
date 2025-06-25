@@ -72,8 +72,8 @@ pipeline {
     // Optional run containers
     stage('Run Containers') {
       steps {
-        sh 'docker run -d -p 8081:8080 jagadeeswari/student-react-app:v1'
-        sh 'docker run -d -p 3000:3000 jagadeeswari/student-spring-app:v1'
+        sh 'docker run -d --name student-react-app -p 8081:8080 jagadeeswari/student-react-app:v1'
+        sh 'docker run -d --name student-spring-app -p 3000:3000 jagadeeswari/student-spring-app:v1'
       }
     }
   }
